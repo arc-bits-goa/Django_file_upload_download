@@ -52,4 +52,3 @@ def download_view(request):
 				response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
 				return response
 	raise Http404
-    # return HttpResponse("<h1>test</h1>")
