@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+	
+	<h1>Files Home</h1>
+	<br/>
+
+	<form method="post" enctype="multipart/form-data">{% csrf_token %}
+		<input type="file" name="my_file">
+		<button class="btn btn-secondary" type="submit">Upload</button>
+	</form>
+
+	<br/>
+
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">file name</th>
+	      <th scope="col">size</th>
+	      <th scope="col">file type</th>
+	      <th scope="col">upload date</th>
+	      <th scope="col"></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	{% for file in files %}
+	  		{% url 'files_home:download_file' as download_file_url%}
+
+	  		<tr>
+		      <th scope="row">{{ forloop.counter }}</th>
+		      <td>{{ file.upload.name }}</td>
+		      <td>{{ file.size }}</td>
+		      <td>{{ file.file_type }}</td>
+		      <td>{{ file.upload_datetime }}</td>
+		      <td>
+		      	<form action="{{ download_file_url }}" method="post">
+				{% csrf_token %}
+				{{ form }}
+				<input type="hidden" name="path" value="{{ file.upload.name }}">
+				<input type="submit" class="btn btn-primary label-success" value="Download" />
+				</form>
+		      </td>
+		    </tr>
+
+	  	{% endfor %}
+	  </tbody>
+	</table>
+
+	<!-- <a href="{{download_file_url}}">test</a> -->
+
+{% endblock %}
