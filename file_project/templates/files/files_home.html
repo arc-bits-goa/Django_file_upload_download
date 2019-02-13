@@ -13,7 +13,29 @@
 	</form>
 
 	<br/>
+	<br/>
 
+	<h2>File Type Count</h2>
+	<table class="table">
+	  <thead>
+	    <tr>
+	    	{% for file_type in file_types %}
+	    		<th scope="col">{{ file_type }}</th>
+		    {% endfor %}
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<tr>
+		  	{% for file_type_count in file_type_counts %}
+		  		<td>{{ file_type_count }}</td>
+			{% endfor %}
+		</tr>
+	  </tbody>
+	</table>
+
+	<br/>
+
+	<h2>Files</h2>
 	<table class="table">
 	  <thead>
 	    <tr>

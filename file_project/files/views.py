@@ -27,8 +27,16 @@ def files_home_view(request):
 			new_file.save()
 			print(uploaded_file.content_type)
 
-	qs = File.objects.all()
+	qs = File.objects.all().order_by('-upload_datetime')
 	context['files'] = qs
+
+	context["file_types"] = file_content_types
+	file_type_counts = []
+	for file_type in file_content_types:
+		count = File.objects.filter(file_type=file_type).count()
+		file_type_counts.append(count)
+
+	context["file_type_counts"] = file_type_counts
 
 	return render(request, "files/files_home.html", context)
 
