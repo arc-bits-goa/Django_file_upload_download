@@ -19,13 +19,9 @@ def files_home_view(request):
 
 	if request.method == 'POST':
 		uploaded_file = request.FILES['my_file']
-		if uploaded_file.content_type not in file_content_types:
-			print("INVALID CONTENT TYPE")
-
-		else:
-			new_file = File(upload=uploaded_file, file_type=uploaded_file.content_type)
-			new_file.save()
-			print(uploaded_file.content_type)
+		new_file = File(upload=uploaded_file, file_type=uploaded_file.content_type)
+		new_file.save()
+		print(uploaded_file.content_type)
 
 	qs = File.objects.all().order_by('-upload_datetime')
 	context['files'] = qs

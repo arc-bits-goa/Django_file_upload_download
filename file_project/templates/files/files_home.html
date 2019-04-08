@@ -15,22 +15,6 @@
 	<br/>
 	<br/>
 
-	<h2>File Type Count</h2>
-	<table class="table">
-	  <thead>
-	    <tr>
-	    	{% for file_type in file_types %}
-	    		<th scope="col">{{ file_type }}</th>
-		    {% endfor %}
-	    </tr>
-	  </thead>
-	  <tbody>
-	  	<tr>
-		  	{% for file_type_count in file_type_counts %}
-		  		<td>{{ file_type_count }}</td>
-			{% endfor %}
-		</tr>
-	  </tbody>
 	</table>
 
 	<br/>
@@ -42,7 +26,7 @@
 	      <th scope="col">#</th>
 	      <th scope="col">file name</th>
 	      <th scope="col">size</th>
-	      <th scope="col">file type</th>
+	      <!-- <th scope="col">file type</th> -->
 	      <th scope="col">upload date</th>
 	      <th scope="col"></th>
 	    </tr>
@@ -55,7 +39,7 @@
 		      <th scope="row">{{ forloop.counter }}</th>
 		      <td>{{ file.upload.name }}</td>
 		      <td>{{ file.size }}</td>
-		      <td>{{ file.file_type }}</td>
+		      <!-- <td>{{ file.file_type }}</td> -->
 		      <td>{{ file.upload_datetime }}</td>
 		      <td>
 		      	<form action="{{ download_file_url }}" method="post">
